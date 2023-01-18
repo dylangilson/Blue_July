@@ -62,6 +62,7 @@ import Terrains.Terrain;
 import Textures.ModelTexture;
 import Textures.TerrainTexture;
 import Textures.TerrainTexturePack;
+import Utilities.DisableIllegalAccessWarning;
 import Utilities.GlobalConstants;
 import Utilities.InternalJarFile;
 import Utilities.MousePicker;
@@ -100,6 +101,9 @@ public class Main {
     public static final List<Item> ITEMS_ON_GROUND = new ArrayList<Item>();
 
     public static void main(String[] args) {
+
+        DisableIllegalAccessWarning.disableAccessWarnings();
+
         DisplayManager.createDisplay();
 
         AudioMaster.init();
@@ -331,7 +335,7 @@ public class Main {
             player.moveTo(gameViewMouseRay, terrain);
             leftClickHeld = Mouse.isButtonDown(0);
 
-            System.out.println(player.getPosition());
+            // System.out.println(player.getPosition());
 
             updateGameObjects(player, terrain);
 

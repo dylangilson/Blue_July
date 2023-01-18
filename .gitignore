@@ -1,0 +1,8 @@
+# folders
+.idea/
+out/
+res/
+versions/
+
+#files
+Blue*July.iml

@@ -1,0 +1,52 @@
+/*
+ * Dylan Gilson
+ * dylan.gilson@outlook.com
+ * January 6, 2021
+ */
+
+package Entities;
+
+import org.lwjgl.util.vector.Vector3f;
+
+public class Light {
+
+    private Vector3f position;
+    private Vector3f colour; // the magnitude of the colour changes the brightness
+    // attenuation can be used to create lights from a given point
+    private Vector3f attenuation = new Vector3f(1, 0, 0); // (1 , 0 , 0) -> no attenuation
+
+    public Light(Vector3f position, Vector3f colour) {
+        this.position = position;
+        this.colour = colour;
+    }
+
+    public Light(Vector3f position, Vector3f colour, Vector3f attenuation) {
+        this.position = position;
+        this.colour = colour;
+        this.attenuation = attenuation;
+    }
+
+    public Vector3f getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector3f position) {
+        this.position = position;
+    }
+
+    public Vector3f getColour() {
+        return colour;
+    }
+
+    public void setColour(Vector3f colour) {
+        this.colour = colour;
+    }
+
+    public Vector3f getAttenuation() {
+        return attenuation;
+    }
+
+    public void setAttenuation(Vector3f attenuation) {
+        this.attenuation = attenuation;
+    }
+}

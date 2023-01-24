@@ -111,7 +111,7 @@ public class Main {
 
         // TODO change this to being the music track
         int buffer = AudioMaster.loadSound(new InternalJarFile("res/Sounds/1.wav"));
-        Source source = new Source(AudioMaster.MIN_VOLUME, new Vector3f(10, 0, 0), new Vector3f(0, 0, 0));
+        Source source = new Source(AudioMaster.MAX_VOLUME, new Vector3f(10, 0, 0), new Vector3f(0, 0, 0));
         source.setLooping(true);
         source.playSound(buffer);
 
@@ -217,8 +217,9 @@ public class Main {
         WaterShader waterShader = new WaterShader();
         WaterRenderer waterRenderer = new WaterRenderer(waterShader, masterRenderer.getProjectionMatrix(), waterFBOs);
         List<WaterTile> waterTiles = new ArrayList<WaterTile>();
-        // WaterTile river = new WaterTile(75, -75, -1f);
+        WaterTile river = new WaterTile(75, -75, -1f);
         WaterTile waterA = new WaterTile(290, -370, 0f);
+        waterTiles.add(river);
         waterTiles.add(waterA);
 
         Vector4f reflectionClipPlane = new Vector4f(0, 1, 0, -waterA.getHeight() + 1);

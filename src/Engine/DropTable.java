@@ -37,7 +37,6 @@ public class DropTable {
 
     public Item getRandomLoot(AggressiveNPC enemy) {
         int dropValue = Main.RANDOM_NUMBER_GENERATOR.nextInt(totalWeight);
-        System.out.println(dropValue);
 
         for (int i = 0; i < dropChances.length; i++) {
             if (dropValue < dropChances[i]) {

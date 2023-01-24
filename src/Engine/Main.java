@@ -101,7 +101,6 @@ public class Main {
     public static final List<Item> ITEMS_ON_GROUND = new ArrayList<Item>();
 
     public static void main(String[] args) {
-
         DisableIllegalAccessWarning.disableAccessWarnings();
 
         DisplayManager.createDisplay();

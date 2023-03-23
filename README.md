@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Blue July
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+![Combat](sample_gameplay/sample1.gif)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+- [Blue July](#blue-july-engine)
+- [Features](#features)
+- [Controls](#controls)
+- [Compilation and Running](#compilation-and-running)
+- [Dependencies](#dependencies)
+- [License](#license)
 
-## Available Scripts
+## Blue July Engine
+Blue July is a 3D game engine written using the Java programming language
+with LWJGL used as graphics API
 
-In the project directory, you can run:
+## Features
+* 3D Animation
+* 2D textures
+* Animated Models
+* Audio Engine
+* Font Renderer
+* Transparency
+* 2D and 3D Particle Systems
+* Shadows
+* Terrain
+* Skybox
+* 3D Water
+* 3D Mouse Picker
+* Minimap
+* Chat Log
 
-### `npm start`
+## Controls
+* Arrow Keys - Rotate camera
+* Left Click - Move character
+* Mouse Scroll Wheel - Zoom in/out
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Compilation and Running
+* change directory to the 'src' folder of the project,
+  then running the following command:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+javac Main.java
+```
 
-### `npm test`
+* IMPORTANT: You will need to add a resource folder for
+the engine to find the resources used in Main.
+You can also create your own Main.java and add your own resources.
+Use the provided Main.java to see how it is structured
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+![Character Movement](sample_gameplay/sample2.gif)
 
-### `npm run build`
+## Dependencies
+* LWJGL
+* Slick Utils
+* OpenAL
+* IMPORTANT: All dependencies are included in the lib folder
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+Eliseo Copyright 2023
+<br>
+Code released under the [MIT License](LICENSE)
+<br>
+Some Textures used in the sample images are taken from Old School Runescape
+which is owned by Jagex Ltd. It is not property of Eliseo

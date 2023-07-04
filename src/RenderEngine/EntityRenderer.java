@@ -31,9 +31,7 @@ public class EntityRenderer {
         this.shader = shader;
 
         shader.startProgram();
-
         shader.loadProjectionMatrix(projectionMatrix);
-
         shader.stopProgram();
     }
 

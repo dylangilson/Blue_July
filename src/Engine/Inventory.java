@@ -8,8 +8,8 @@ package Engine;
 
 import Entities.Item;
 import Entities.Player;
-
 import Utilities.MousePicker;
+
 import org.lwjgl.util.vector.Vector2f;
 
 public class Inventory {
@@ -39,7 +39,7 @@ public class Inventory {
         this.pixelsBetweenEachIndexX = pixelsBetweenEachIndexX;
         this.initialYPosition = initialYPosition;
         this.pixelsBetweenEachIndexY = pixelsBetweenEachIndexY;
-        firstFreeSlot = 0;
+        this.firstFreeSlot = 0;
     }
 
     public void interactWithInventorySlot(Vector2f position) {
@@ -76,9 +76,9 @@ public class Inventory {
         if (items[index].isEquipable()) {
             Item item = items[index];
 
-            remove(index);
-
             player.getEquipment().equip(item);
+
+            remove(index);
 
             return;
         }
@@ -93,7 +93,8 @@ public class Inventory {
         }
 
         items[firstFreeSlot] = item;
-        item.loadTexture(new Vector2f(INITIAL_X_OFFSET + getOffsetX(firstFreeSlot), INITIAL_Y_OFFSET - getOffsetY(firstFreeSlot)));
+        item.loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(firstFreeSlot),
+                player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(firstFreeSlot)));
 
         for (int i = firstFreeSlot + 1; i < items.length; i++) {
             if (items[i] == null) {
@@ -117,6 +118,14 @@ public class Inventory {
         items[index] = null;
         if (index < firstFreeSlot) {
             firstFreeSlot = index;
+        }
+    }
+
+    public void clearPanel() {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                Main.GUIS.remove(items[i].getTexture());
+            }
         }
     }
 

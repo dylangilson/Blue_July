@@ -9,6 +9,7 @@ package Shaders;
 import Uniforms.Uniform;
 import Uniforms.UniformFloat;
 import Uniforms.UniformMatrix;
+import Uniforms.UniformSampler;
 import Utilities.InternalJarFile;
 
 import org.lwjgl.util.vector.Matrix4f;
@@ -22,6 +23,7 @@ public class ParticleShader extends ShaderProgram {
 
 	private UniformMatrix projectionMatrix = new UniformMatrix("projectionMatrix");
     private UniformFloat numberOfRows = new UniformFloat("numberOfRows");
+	private UniformSampler particleTexture = new UniformSampler("particleTexture");
 
 	public ParticleShader() {
 		super(VERTEX_SHADER, FRAGMENT_SHADER, IN_VARIABLES, IN_INDICES);
@@ -35,5 +37,9 @@ public class ParticleShader extends ShaderProgram {
 
 	public void loadNumberOfRows(float value) {
 		numberOfRows.loadFloat(value);
+	}
+
+	public void connectTextureUnits() {
+		particleTexture.loadTexUnit(0);
 	}
 }

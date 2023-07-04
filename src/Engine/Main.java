@@ -66,6 +66,7 @@ import Utilities.DisableIllegalAccessWarning;
 import Utilities.GlobalConstants;
 import Utilities.InternalJarFile;
 import Utilities.MousePicker;
+import Utilities.MousePicker.InventoryPanel;
 import Utilities.RandomNumberGenerator;
 import Water.WaterFrameBuffers;
 import Water.WaterTile;
@@ -160,23 +161,12 @@ public class Main {
         Animation animation = AnimationLoader.loadAnimation(animatedModelFile);
         animatedModel.doAnimation(animation);
 
-        // demon test
-        InternalJarFile demonModelFile = new InternalJarFile("res/Animated Models/Animated Greater Demon.dae");
-        InternalJarFile demonModelTexture = new InternalJarFile("res/2D Textures/Model Textures/Greater Demon Texture.png");
-        AnimatedModel animatedModelDemon = AnimatedModelLoader.loadEntity(demonModelFile, demonModelTexture);
-        Animation demonAnimation = AnimationLoader.loadAnimation(demonModelFile);
-        animatedModelDemon.doAnimation(demonAnimation);
-
         // skeleton test
         InternalJarFile skeletonModelFile = new InternalJarFile("res/Animated Models/Skeleton.dae");
         InternalJarFile skeletonModelTexture = new InternalJarFile("res/2D Textures/Model Textures/Skeleton Texture.png");
         AnimatedModel animatedSkeleton = AnimatedModelLoader.loadEntity(skeletonModelFile, skeletonModelTexture);
         Animation skeletonAnimation = AnimationLoader.loadAnimation(skeletonModelFile);
         animatedSkeleton.doAnimation(skeletonAnimation);
-
-        GreaterDemon greaterDemon = new GreaterDemon("Greater Demon", animatedModelDemon, new Vector3f(25, terrain.getHeightOfTerrain(25, -25), -25),
-                new Vector3f(0, 0, 0), GlobalConstants.ROTATE_SOUTH_GREATER_DEMON, GreaterDemon.REGULAR_SCALE3D, 0, NPC.MovementType.RANDOM,
-                true, AggressiveNPC.AttackType.MELEE, 1);
 
         GreaterDemon skeleton = new GreaterDemon("Skeleton", animatedSkeleton, new Vector3f(15, terrain.getHeightOfTerrain(15, -15), -15),
                 new Vector3f(0, 0, 0), GlobalConstants.ROTATE_SOUTH_COWBOY, 3f, 0, NPC.MovementType.RANDOM,
@@ -317,6 +307,8 @@ public class Main {
 
             ParticleMaster.update(camera);
 
+            InventoryPanelSystem inventoryPanelSystem = new InventoryPanelSystem();
+
             // TODO clean this up and make into a function
             // ensures each left click is consumed only once
             if (Mouse.isButtonDown(0) && !leftClickHeld) {
@@ -325,17 +317,18 @@ public class Main {
                     player.faceTarget(gameViewMouseRay); // handle character rotation
                 } else if (mouse.elementHoveredOver == MousePicker.GameElement.INVENTORY) {
                     HUDMouseRay = mouse.getMouseScreenPoint();
+                    InventoryPanel currentPanel = mouse.currentPanel;
                     mouse.selectInventoryPanel(HUDMouseRay);
 
-                    // TODO change inventory panel view based on mouse.currentPanel's value
-                    InventoryPanelSystem.displayPanel(mouse.currentPanel);
+                    if (mouse.currentPanel != currentPanel) {
+                        inventoryPanelSystem.displayPanel(player, mouse.currentPanel);
+                    }
+
                     player.getInventory().interactWithInventorySlot(HUDMouseRay);
                 }
             }
             player.moveTo(gameViewMouseRay, terrain);
             leftClickHeld = Mouse.isButtonDown(0);
-
-            // System.out.println(player.getPosition());
 
             updateGameObjects(player, terrain);
 
@@ -395,6 +388,7 @@ public class Main {
         freeList(FRIENDLY_NPCS);
         freeList(ENEMIES);
         freeList(ITEMS_ON_GROUND);
+
         DisplayManager.closeDisplay();
     }
 
@@ -411,10 +405,9 @@ public class Main {
         }
 
         // TODO determine why calling update on only one model causes the all animations of all entities to update
-        // for (int i = 0; i < ANIMATED_ENTITIES.size(); i++) {
-            // ANIMATED_ENTITIES.get(i).getModel().update();
-            ANIMATED_ENTITIES.get(1).getModel().update();
-        // }
+        for (int i = 0; i < ANIMATED_ENTITIES.size(); i++) {
+            ANIMATED_ENTITIES.get(i).getModel().update();
+        }
     }
 
     private static void freeList(List list) {

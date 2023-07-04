@@ -7,6 +7,7 @@
 package Utilities;
 
 import Entities.Camera;
+import Entities.Entity;
 import RenderEngine.DisplayManager;
 import Terrains.Terrain;
 
@@ -82,10 +83,6 @@ public class MousePicker {
 
     public Vector2f getMouseScreenPoint() {
         return new Vector2f(Mouse.getX(), Mouse.getY());
-    }
-
-    public Vector3f getCurrentRay() {
-        return currentRay;
     }
 
     public Vector3f getCurrentTerrainPoint() {

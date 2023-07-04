@@ -54,6 +54,7 @@ public class ParticleRenderer {
 		shader = new ParticleShader();
 		shader.startProgram();
 		shader.loadProjectionMatrix(projectionMatrix);
+		shader.connectTextureUnits();
 		shader.stopProgram();
 	}
 	

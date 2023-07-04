@@ -7,11 +7,10 @@
 package Utilities;
 
 import Entities.Entity;
-import org.lwjgl.util.vector.Vector3f;
 
 public class Physics {
 
-    // returns the distance between two entities in 3D
+    // returns the 3D distance between two entities
     public static float calculateDistanceBetweenEntities(Entity a, Entity b) {
         float dX = (a.getPosition().x - b.getPosition().x) * (a.getPosition().x - b.getPosition().x);
         float dY = (a.getPosition().y - b.getPosition().y) * (a.getPosition().y - b.getPosition().y);

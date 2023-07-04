@@ -20,7 +20,6 @@ public abstract class Entity {
     public static final float POSITION_THRESHOLD = 0.5f;
     public static final int ROTATION_FACTOR = 10;
 
-
     private String name;
     private Vector3f position;
     private Vector3f velocity;

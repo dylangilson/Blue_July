@@ -33,7 +33,7 @@ with LWJGL used as graphics API
 ## Controls
 * Arrow Keys - Rotate camera
 * Left Click - Move character
-* Right Click - Drag and Drop in Inventory
+* Right Click - Drag and drop in inventory
 * Mouse Scroll Wheel - Zoom in/out
 * F12 - Enter Fullscreen
 * ESC - Exit Game

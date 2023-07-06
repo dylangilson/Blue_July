@@ -6,8 +6,8 @@
 
 package Utilities;
 
+import Engine.Main;
 import Entities.Camera;
-import Entities.Entity;
 import RenderEngine.DisplayManager;
 import Terrains.Terrain;
 
@@ -62,14 +62,11 @@ public class MousePicker {
         COMBAT, LEVELS, QUESTS, INVENTORY, EQUIPMENT, PRAYER, MAGIC, FRIENDS, IGNORES, LOGOUT, SETTINGS, EMOTES, MUSIC
     }
 
-    public InventoryPanel currentPanel;
-
     public MousePicker(Camera camera, Matrix4f projectionMatrix, Terrain terrain) {
         this.camera = camera;
         this.projectionMatrix = projectionMatrix;
         this.viewMatrix = Mathematics.createViewMatrix(camera);
         this.terrain = terrain;
-        this.currentPanel = InventoryPanel.INVENTORY;
     }
 
     public void update() {
@@ -103,33 +100,33 @@ public class MousePicker {
 
     public void selectInventoryPanel(Vector2f mouseRay) {
         if (mouseRay.getX() < COMBAT_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.COMBAT;
+            Main.INVENTORY_PANEL = InventoryPanel.COMBAT;
         } else if (mouseRay.getX() < LEVELS_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.LEVELS;
+            Main.INVENTORY_PANEL = InventoryPanel.LEVELS;
         } else if (mouseRay.getX() < QUESTS_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.QUESTS;
+            Main.INVENTORY_PANEL = InventoryPanel.QUESTS;
         } else if (mouseRay.getX() < INVENTORY_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.INVENTORY;
+            Main.INVENTORY_PANEL = InventoryPanel.INVENTORY;
         } else if (mouseRay.getX() < EQUIPMENT_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.EQUIPMENT;
+            Main.INVENTORY_PANEL = InventoryPanel.EQUIPMENT;
         } else if (mouseRay.getX() < PRAYER_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.PRAYER;
+            Main.INVENTORY_PANEL = InventoryPanel.PRAYER;
         } else if (mouseRay.getX() < MAGIC_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.MAGIC;
+            Main.INVENTORY_PANEL = InventoryPanel.MAGIC;
         } else if (mouseRay.getX() < BLANK_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
             // blank tile
         } else if (mouseRay.getX() < FRIENDS_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.FRIENDS;
+            Main.INVENTORY_PANEL = InventoryPanel.FRIENDS;
         } else if (mouseRay.getX() < IGNORES_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.IGNORES;
+            Main.INVENTORY_PANEL = InventoryPanel.IGNORES;
         } else if (mouseRay.getX() < LOGOUT_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.LOGOUT;
+            Main.INVENTORY_PANEL = InventoryPanel.LOGOUT;
         } else if (mouseRay.getX() < SETTINGS_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.SETTINGS;
+            Main.INVENTORY_PANEL = InventoryPanel.SETTINGS;
         } else if (mouseRay.getX() < EMOTES_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.EMOTES;
+            Main.INVENTORY_PANEL = InventoryPanel.EMOTES;
         } else if (mouseRay.getX() < MUSIC_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            currentPanel = InventoryPanel.MUSIC;
+            Main.INVENTORY_PANEL = InventoryPanel.MUSIC;
         }
     }
 

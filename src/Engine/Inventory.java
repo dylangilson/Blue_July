@@ -87,14 +87,64 @@ public class Inventory {
         remove(index);
     }
 
+    public boolean swap(int lastRightClickX, int lastRightClickY, int rightClickX, int rightClickY) {
+        if (rightClickY > MousePicker.TOP_BAR_HEIGHT || rightClickY < MousePicker.BOTTOM_BAR_HEIGHT) {
+            return false;
+        }
+
+        int lastX = 0;
+        for (int i = 0; i <= numberOfColumns; i++) {
+            if (lastRightClickX < initialXPosition + (pixelsBetweenEachIndexX * i)) {
+                lastX = i - 1;
+                break;
+            }
+        }
+
+        int lastY = 0;
+        for (int i = numberOfRows; i >= 0; i--) {
+            if (lastRightClickY < initialYPosition - (pixelsBetweenEachIndexY * i)) {
+                lastY = i;
+                break;
+            }
+        }
+
+        int lastIndex = lastY * numberOfColumns + lastX;
+
+        int x = 0;
+        for (int i = 0; i <= numberOfColumns; i++) {
+            if (rightClickX < initialXPosition + (pixelsBetweenEachIndexX * i)) {
+                x = i - 1;
+                break;
+            }
+        }
+
+        int y = 0;
+        for (int i = numberOfRows; i >= 0; i--) {
+            if (rightClickY < initialYPosition - (pixelsBetweenEachIndexY * i)) {
+                y = i;
+                break;
+            }
+        }
+
+        if (x < 0 || y < 0 || x > numberOfRows || y > numberOfColumns) {
+            return false;
+        }
+
+        int index = y * numberOfColumns + x;
+
+        return swapItems(lastIndex, index);
+    }
+
     public boolean addItem(Item item) {
         if (firstFreeSlot == items.length) {
             return false; // inventory is full
         }
 
         items[firstFreeSlot] = item;
-        item.loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(firstFreeSlot),
-                player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(firstFreeSlot)));
+        if (Main.INVENTORY_PANEL == MousePicker.InventoryPanel.INVENTORY) {
+            item.loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(firstFreeSlot),
+                    player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(firstFreeSlot)));
+        }
 
         for (int i = firstFreeSlot + 1; i < items.length; i++) {
             if (items[i] == null) {
@@ -119,6 +169,38 @@ public class Inventory {
         if (index < firstFreeSlot) {
             firstFreeSlot = index;
         }
+    }
+
+    private boolean swapItems(int indexA, int indexB) {
+        if (indexA >= numberOfRows * numberOfColumns || indexB >= numberOfRows * numberOfColumns || indexA < 0 || indexB < 0 || indexA == indexB) {
+            return false;
+        }
+
+        if (items[indexA] == null) {
+            return false;
+        }
+
+        Main.GUIS.remove(items[indexA].getTexture());
+
+        if (items[indexB] != null) {
+            Main.GUIS.remove(items[indexB].getTexture());
+        }
+
+        Item temp = items[indexA];
+        items[indexA] = items[indexB];
+        items[indexB] = temp;
+
+        if (items[indexA] != null) {
+            items[indexA].loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(indexA),
+                    player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(indexA)));
+        }
+
+        if (items[indexB] != null) {
+            items[indexB].loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(indexB),
+                    player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(indexB)));
+        }
+
+        return true;
     }
 
     public void clearPanel() {

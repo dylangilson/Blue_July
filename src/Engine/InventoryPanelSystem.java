@@ -7,13 +7,16 @@
 package Engine;
 
 import Entities.Player;
+import Utilities.MousePicker;
 import Utilities.MousePicker.InventoryPanel;
 
 import org.lwjgl.util.vector.Vector2f;
 
 public class InventoryPanelSystem {
 
-    public void displayPanel(Player player, InventoryPanel panel) {
+    public void displayPanel(Player player) {
+        MousePicker.InventoryPanel panel = Main.INVENTORY_PANEL;
+
         // TODO implement this
         if (panel == InventoryPanel.INVENTORY) {
             for (int i = 0; i < player.getInventory().getItems().length; i++) {

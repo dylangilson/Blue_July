@@ -66,7 +66,6 @@ import Utilities.DisableIllegalAccessWarning;
 import Utilities.GlobalConstants;
 import Utilities.InternalJarFile;
 import Utilities.MousePicker;
-import Utilities.MousePicker.InventoryPanel;
 import Utilities.RandomNumberGenerator;
 import Water.WaterFrameBuffers;
 import Water.WaterTile;
@@ -100,6 +99,7 @@ public class Main {
     public static final List<FriendlyNPC> FRIENDLY_NPCS = new ArrayList<FriendlyNPC>();
     public static final List<AggressiveNPC> ENEMIES = new ArrayList<AggressiveNPC>();
     public static final List<Item> ITEMS_ON_GROUND = new ArrayList<Item>();
+    public static MousePicker.InventoryPanel INVENTORY_PANEL = MousePicker.InventoryPanel.INVENTORY;
 
     public static void main(String[] args) {
         DisableIllegalAccessWarning.disableAccessWarnings();
@@ -244,8 +244,15 @@ public class Main {
 
         MousePicker mouse = new MousePicker(camera, masterRenderer.getProjectionMatrix(), terrain);
         boolean leftClickHeld = false;
+        boolean rightClickHeld = false;
         Vector3f gameViewMouseRay = new Vector3f(player.getPosition());
         Vector2f HUDMouseRay;
+        InventoryPanelSystem inventoryPanelSystem = new InventoryPanelSystem();
+        int rightClickX = 0;
+        int rightClickY = 0;
+        int lastRightClickX = 0;
+        int lastRightClickY = 0;
+        boolean readyToSwap = false;
 
         /*
         FileManager.createDirectory("", "temp");
@@ -307,9 +314,6 @@ public class Main {
 
             ParticleMaster.update(camera);
 
-            InventoryPanelSystem inventoryPanelSystem = new InventoryPanelSystem();
-
-            // TODO clean this up and make into a function
             // ensures each left click is consumed only once
             if (Mouse.isButtonDown(0) && !leftClickHeld) {
                 if (mouse.elementHoveredOver == MousePicker.GameElement.GAMEVIEW && mouse.getCurrentTerrainPoint() != null) {
@@ -317,18 +321,38 @@ public class Main {
                     player.faceTarget(gameViewMouseRay); // handle character rotation
                 } else if (mouse.elementHoveredOver == MousePicker.GameElement.INVENTORY) {
                     HUDMouseRay = mouse.getMouseScreenPoint();
-                    InventoryPanel currentPanel = mouse.currentPanel;
+                    MousePicker.InventoryPanel currentPanel = INVENTORY_PANEL;
                     mouse.selectInventoryPanel(HUDMouseRay);
 
-                    if (mouse.currentPanel != currentPanel) {
-                        inventoryPanelSystem.displayPanel(player, mouse.currentPanel);
+                    if (INVENTORY_PANEL != currentPanel) {
+                        inventoryPanelSystem.displayPanel(player);
                     }
 
                     player.getInventory().interactWithInventorySlot(HUDMouseRay);
+                    rightClickHeld = false;
                 }
             }
             player.moveTo(gameViewMouseRay, terrain);
             leftClickHeld = Mouse.isButtonDown(0);
+
+            // ensures each right click is consumed only once (currently only matters when using Inventory Panel)
+            if (mouse.elementHoveredOver == MousePicker.GameElement.INVENTORY) {
+                if (Mouse.isButtonDown(1) && !rightClickHeld) {
+                    rightClickX = Mouse.getX();
+                    rightClickY = Mouse.getY();
+
+                    if ((lastRightClickX != rightClickX || lastRightClickY != rightClickY) && readyToSwap) {
+                        if (!player.getInventory().swap(lastRightClickX, lastRightClickY, rightClickX, rightClickY)) {
+                            readyToSwap = false;
+                        }
+                    }
+
+                    readyToSwap = !readyToSwap;
+                }
+            }
+            rightClickHeld = Mouse.isButtonDown(1);
+            lastRightClickX = rightClickX;
+            lastRightClickY = rightClickY;
 
             updateGameObjects(player, terrain);
 

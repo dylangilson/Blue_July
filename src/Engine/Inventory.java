@@ -92,6 +92,10 @@ public class Inventory {
             return false;
         }
 
+        if (rightClickX > MousePicker.RIGHT_BAR_WIDTH || rightClickX < MousePicker.LEFT_BAR_WIDTH) {
+            return false;
+        }
+
         int lastX = 0;
         for (int i = 0; i <= numberOfColumns; i++) {
             if (lastRightClickX < initialXPosition + (pixelsBetweenEachIndexX * i)) {

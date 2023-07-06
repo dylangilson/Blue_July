@@ -28,6 +28,8 @@ public class MousePicker {
     private static final int INVENTORY_HEIGHT = 432; // y in [0, 432] -> in inventory
     public static final int TOP_BAR_HEIGHT = 380;
     public static final int BOTTOM_BAR_HEIGHT = 45;
+    public static final int LEFT_BAR_WIDTH = 960;
+    public static final int RIGHT_BAR_WIDTH = 1240;
     private static final int COMBAT_WIDTH = 965;
     private static final int LEVELS_WIDTH = 1012;
     private static final int QUESTS_WIDTH = 1060;

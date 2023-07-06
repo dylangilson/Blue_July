@@ -12,7 +12,8 @@
 
 ## Blue July Engine
 Blue July is a 3D game engine written using the Java programming language
-with LWJGL used as graphics API
+with Lightweight Java Game Library (LWJGL) used as the graphics API and
+game library 
 
 ## Features
 * 3D Animation
@@ -36,7 +37,7 @@ with LWJGL used as graphics API
 * Right Click - Drag and drop in inventory
 * Mouse Scroll Wheel - Zoom in/out
 * F12 - Enter Fullscreen
-* ESC - Exit Game
+* ESC - Exit Fullscreen
 
 ## Compilation and Running
 * change directory to the 'src' folder of the project,

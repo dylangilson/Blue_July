@@ -60,7 +60,7 @@ public class MousePicker {
     public GameElement elementHoveredOver;
 
     // gui/gameview that the mouse is hovering over
-    public enum InventoryPanel {
+    public enum HUDPanel {
         COMBAT, LEVELS, QUESTS, INVENTORY, EQUIPMENT, PRAYER, MAGIC, FRIENDS, IGNORES, LOGOUT, SETTINGS, EMOTES, MUSIC
     }
 
@@ -100,35 +100,35 @@ public class MousePicker {
         }
     }
 
-    public void selectInventoryPanel(Vector2f mouseRay) {
+    public void selectHUDPanel(Vector2f mouseRay) {
         if (mouseRay.getX() < COMBAT_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.COMBAT;
+            Main.INVENTORY_PANEL = HUDPanel.COMBAT;
         } else if (mouseRay.getX() < LEVELS_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.LEVELS;
+            Main.INVENTORY_PANEL = HUDPanel.LEVELS;
         } else if (mouseRay.getX() < QUESTS_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.QUESTS;
+            Main.INVENTORY_PANEL = HUDPanel.QUESTS;
         } else if (mouseRay.getX() < INVENTORY_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.INVENTORY;
+            Main.INVENTORY_PANEL = HUDPanel.INVENTORY;
         } else if (mouseRay.getX() < EQUIPMENT_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.EQUIPMENT;
+            Main.INVENTORY_PANEL = HUDPanel.EQUIPMENT;
         } else if (mouseRay.getX() < PRAYER_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.PRAYER;
+            Main.INVENTORY_PANEL = HUDPanel.PRAYER;
         } else if (mouseRay.getX() < MAGIC_WIDTH && mouseRay.getY() > TOP_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.MAGIC;
+            Main.INVENTORY_PANEL = HUDPanel.MAGIC;
         } else if (mouseRay.getX() < BLANK_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
             // blank tile
         } else if (mouseRay.getX() < FRIENDS_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.FRIENDS;
+            Main.INVENTORY_PANEL = HUDPanel.FRIENDS;
         } else if (mouseRay.getX() < IGNORES_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.IGNORES;
+            Main.INVENTORY_PANEL = HUDPanel.IGNORES;
         } else if (mouseRay.getX() < LOGOUT_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.LOGOUT;
+            Main.INVENTORY_PANEL = HUDPanel.LOGOUT;
         } else if (mouseRay.getX() < SETTINGS_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.SETTINGS;
+            Main.INVENTORY_PANEL = HUDPanel.SETTINGS;
         } else if (mouseRay.getX() < EMOTES_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.EMOTES;
+            Main.INVENTORY_PANEL = HUDPanel.EMOTES;
         } else if (mouseRay.getX() < MUSIC_WIDTH && mouseRay.getY() < BOTTOM_BAR_HEIGHT) {
-            Main.INVENTORY_PANEL = InventoryPanel.MUSIC;
+            Main.INVENTORY_PANEL = HUDPanel.MUSIC;
         }
     }
 

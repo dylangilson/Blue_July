@@ -75,10 +75,9 @@ public class Inventory {
 
         if (items[index].isEquipable()) {
             Item item = items[index];
-
-            player.getEquipment().equip(item);
-
             remove(index);
+
+            player.getEquipment().equip(item, index);
 
             return;
         }
@@ -145,7 +144,7 @@ public class Inventory {
         }
 
         items[firstFreeSlot] = item;
-        if (Main.INVENTORY_PANEL == MousePicker.InventoryPanel.INVENTORY) {
+        if (Main.INVENTORY_PANEL == MousePicker.HUDPanel.INVENTORY) {
             item.loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(firstFreeSlot),
                     player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(firstFreeSlot)));
         }
@@ -158,6 +157,16 @@ public class Inventory {
         }
 
         firstFreeSlot = items.length;
+
+        return true;
+    }
+
+    public boolean addItemAtIndex(Item item, int index) {
+        items[index] = item;
+        if (Main.INVENTORY_PANEL == MousePicker.HUDPanel.INVENTORY) {
+            item.loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(index),
+                    player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(index)));
+        }
 
         return true;
     }
@@ -204,7 +213,20 @@ public class Inventory {
                     player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(indexB)));
         }
 
+        findFirstFreeSlot();
+
         return true;
+    }
+
+    public void findFirstFreeSlot() {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] == null) {
+                firstFreeSlot = i;
+                return;
+            }
+        }
+
+        firstFreeSlot = items.length;
     }
 
     public void clearPanel() {

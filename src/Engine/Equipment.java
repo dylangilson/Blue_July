@@ -28,14 +28,16 @@ public class Equipment {
         this.items = new Item[EQUIPMENT_COUNT];
     }
 
-    public void equip(Item item) {
-        if (items[item.getEquipmentSlotInteger()] == null) {
+    public void equip(Item item, int index) {
+        Item temp = items[item.getEquipmentSlotInteger()];
+
+        if (temp == null) {
             items[item.getEquipmentSlotInteger()] = item;
             return;
         }
 
         // put the currently worn equipment back into inventory
-        player.getInventory().addItem(items[item.getEquipmentSlotInteger()]);
+        player.getInventory().addItemAtIndex(items[item.getEquipmentSlotInteger()], index);
         items[item.getEquipmentSlotInteger()] = item;
     }
 }

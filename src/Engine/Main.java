@@ -99,7 +99,7 @@ public class Main {
     public static final List<FriendlyNPC> FRIENDLY_NPCS = new ArrayList<FriendlyNPC>();
     public static final List<AggressiveNPC> ENEMIES = new ArrayList<AggressiveNPC>();
     public static final List<Item> ITEMS_ON_GROUND = new ArrayList<Item>();
-    public static MousePicker.InventoryPanel INVENTORY_PANEL = MousePicker.InventoryPanel.INVENTORY;
+    public static MousePicker.HUDPanel INVENTORY_PANEL = MousePicker.HUDPanel.INVENTORY;
 
     public static void main(String[] args) {
         DisableIllegalAccessWarning.disableAccessWarnings();
@@ -247,7 +247,7 @@ public class Main {
         boolean rightClickHeld = false;
         Vector3f gameViewMouseRay = new Vector3f(player.getPosition());
         Vector2f HUDMouseRay;
-        InventoryPanelSystem inventoryPanelSystem = new InventoryPanelSystem();
+        HUDPanelSystem HUDPanelSystem = new HUDPanelSystem();
         int rightClickX = 0;
         int rightClickY = 0;
         int lastRightClickX = 0;
@@ -321,11 +321,16 @@ public class Main {
                     player.faceTarget(gameViewMouseRay); // handle character rotation
                 } else if (mouse.elementHoveredOver == MousePicker.GameElement.INVENTORY) {
                     HUDMouseRay = mouse.getMouseScreenPoint();
-                    MousePicker.InventoryPanel currentPanel = INVENTORY_PANEL;
-                    mouse.selectInventoryPanel(HUDMouseRay);
+                    MousePicker.HUDPanel currentPanel = INVENTORY_PANEL;
+                    mouse.selectHUDPanel(HUDMouseRay);
 
                     if (INVENTORY_PANEL != currentPanel) {
-                        inventoryPanelSystem.displayPanel(player);
+                        HUDPanelSystem.displayPanel(player);
+                        rightClickX = 0;
+                        rightClickY = 0;
+                        lastRightClickX = 0;
+                        lastRightClickY = 0;
+                        readyToSwap = false;
                     }
 
                     player.getInventory().interactWithInventorySlot(HUDMouseRay);

@@ -73,6 +73,7 @@ public class Skill {
         this.text = new GUIText(this.getTemporaryLevel() + "/" + this.getLevel(), 0.9f, TextMaster.MALGUN_GOTHIC,
                 GlobalConstants.GOLD, TextMaster.NORMAL_TEXT_COLOUR, new Vector2f(TextMaster.BORDERWIDTH_NO_EFFECT, TextMaster.BORDEREDGE_NO_EFFECT),
                 position, TextMaster.MAX_LINE_LENGTH, false);
+
         TextMaster.loadText(this.text);
     }
 

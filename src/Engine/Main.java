@@ -248,6 +248,7 @@ public class Main {
         Vector3f gameViewMouseRay = new Vector3f(player.getPosition());
         Vector2f HUDMouseRay;
         HUDPanelSystem HUDPanelSystem = new HUDPanelSystem();
+        HUDPanelSystem.displayPanel(player);
         int rightClickX = 0;
         int rightClickY = 0;
         int lastRightClickX = 0;
@@ -325,6 +326,7 @@ public class Main {
                     mouse.selectHUDPanel(HUDMouseRay);
 
                     if (HUD_PANEL != currentPanel) {
+                        HUDPanelSystem.removeTexture();
                         HUDPanelSystem.displayPanel(player);
                         rightClickX = 0;
                         rightClickY = 0;

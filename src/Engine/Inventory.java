@@ -229,6 +229,14 @@ public class Inventory {
         firstFreeSlot = items.length;
     }
 
+    public void renderPanel() {
+        for (int i = 0; i < getItems().length; i++) {
+            if (getItem(i) != null) {
+                getItem(i).loadTexture(new Vector2f(INITIAL_X_OFFSET + getOffsetX(i), INITIAL_Y_OFFSET - getOffsetY(i)));
+            }
+        }
+    }
+
     public void clearPanel() {
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null) {

@@ -194,6 +194,10 @@ public class Stats {
     }
 
     public void clearPanel() {
+        if (this.attack.getTexture() == null) {
+            return;
+        }
+
         Main.GUIS.remove(this.attack.getTexture());
         Main.GUIS.remove(this.strength.getTexture());
         Main.GUIS.remove(this.defence.getTexture());

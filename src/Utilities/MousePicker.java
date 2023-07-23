@@ -33,7 +33,7 @@ public class MousePicker {
     private static final int COMBAT_WIDTH = 965;
     private static final int LEVELS_WIDTH = 1012;
     private static final int QUESTS_WIDTH = 1060;
-    private static final int INVENTORY_WIDTH = 1135;
+    private static final int INVENTORY_WIDTH = 1137;
     private static final int EQUIPMENT_WIDTH = 1185;
     private static final int PRAYER_WIDTH = 1234;
     private static final int MAGIC_WIDTH = 1280;

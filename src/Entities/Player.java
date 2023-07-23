@@ -9,6 +9,8 @@ package Entities;
 import Animation.AnimatedModel;
 import Engine.Delay;
 import Engine.Equipment;
+import Engine.Friends;
+import Engine.Ignore;
 import Engine.Inventory;
 import Engine.Stats;
 import RenderEngine.DisplayManager;
@@ -41,8 +43,10 @@ public class Player extends AnimatedEntity {
     private float attackRange;
     private Delay attackDelay;
     private Inventory inventory;
-    private Equipment equipment;
     private Stats stats;
+    private Equipment equipment;
+    private Friends friends;
+    private Ignore ignore;
     private NPC target;
 
     public Player(String username, AnimatedModel model, Vector3f position, Vector3f velocity, Vector3f rotation, float scale, int textureIndex) {
@@ -59,8 +63,10 @@ public class Player extends AnimatedEntity {
         this.attackDelay.end();
         this.inventory = new Inventory(this, INVENTORY_SIZE, NUMBER_OF_ROWS_INVENTORY, NUMBER_OF_COLUMNS_INVENTORY, INITIAL_X_POSITION_INVENTORY,
                 NUMBER_OF_PIXELS_BETWEEN_INVENTORY_SLOT_X, INITIAL_Y_POSITION_INVENTORY, NUMBER_OF_PIXELS_BETWEEN_INVENTORY_SLOT_Y);
-        this.equipment = new Equipment(this);
         this.stats = new Stats(true);
+        this.equipment = new Equipment(this);
+        this.friends = new Friends();
+        this.ignore = new Ignore();
         this.target = null;
 
         // TODO remove this as its just for test
@@ -181,6 +187,14 @@ public class Player extends AnimatedEntity {
 
     public Stats getStats() {
         return stats;
+    }
+
+    public Friends getFriends() {
+        return friends;
+    }
+
+    public Ignore getIgnore() {
+        return ignore;
     }
 
     public NPC getTarget() {

@@ -6,12 +6,16 @@
 
 package Engine;
 
+import Font.GUIText;
+import Font.TextMaster;
 import GUIs.GUITexture;
+
+import Utilities.GlobalConstants;
 import org.lwjgl.util.vector.Vector2f;
 
 public class Skill {
 
-    private static final float TEXTURE_SCALE = 0.04f;
+    private static final float TEXTURE_SCALE = 0.035f;
 
     private String name;
     private long xp;
@@ -19,6 +23,7 @@ public class Skill {
     private int level; // actual level
     private boolean isLevelable; // true if stats can increase (e.g. player), false otherwise (e.g. enemies)
     private GUITexture texture;
+    private GUIText text;
 
     public Skill(String name, long xp, Vector2f texturePosition, boolean isLevelable) {
         this.name = name;
@@ -26,7 +31,6 @@ public class Skill {
         calculateLevel();
         this.temporaryLevel = level;
         this.isLevelable = isLevelable;
-        loadTexture(texturePosition);
     }
 
     public void addXP(int xp) {
@@ -61,8 +65,19 @@ public class Skill {
     }
 
     public void loadTexture(Vector2f position) {
-        int textureID = Main.LOADER.loadTexture(name, "Skill Textures");
+        int textureID =  Main.LOADER.loadTexture(name, "Skill Textures");
         this.texture = new GUITexture(textureID, position, new Vector2f(TEXTURE_SCALE, TEXTURE_SCALE), 0, false);
+    }
+
+    public void loadText(Vector2f position) {
+        this.text = new GUIText(this.getTemporaryLevel() + "/" + this.getLevel(), 0.9f, TextMaster.MALGUN_GOTHIC,
+                GlobalConstants.GOLD, TextMaster.NORMAL_TEXT_COLOUR, new Vector2f(TextMaster.BORDERWIDTH_NO_EFFECT, TextMaster.BORDEREDGE_NO_EFFECT),
+                position, TextMaster.MAX_LINE_LENGTH, false);
+        TextMaster.loadText(this.text);
+    }
+
+    public void removeText() {
+        TextMaster.removeText(this.text);
     }
 
     public String getName() {
@@ -79,5 +94,13 @@ public class Skill {
 
     public int getTemporaryLevel() {
         return temporaryLevel;
+    }
+
+    public GUITexture getTexture() {
+        return texture;
+    }
+
+    public GUIText getText() {
+        return text;
     }
 }

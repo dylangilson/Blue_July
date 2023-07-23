@@ -28,7 +28,7 @@ public class HUDPanelSystem {
         } else if (panel == HUDPanel.COMBAT) {
 
         } else if (panel == HUDPanel.LEVELS) {
-
+            player.getStats().renderPanel();
         } else if (panel == HUDPanel.QUESTS) {
 
         } else if (panel == HUDPanel.EQUIPMENT) {
@@ -62,7 +62,7 @@ public class HUDPanelSystem {
 
         }
         if (panel != HUDPanel.LEVELS) {
-
+            player.getStats().clearPanel();
         }
         if (panel != HUDPanel.QUESTS) {
 

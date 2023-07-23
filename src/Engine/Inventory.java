@@ -87,7 +87,7 @@ public class Inventory {
     }
 
     public boolean swap(int lastRightClickX, int lastRightClickY, int rightClickX, int rightClickY) {
-        if (rightClickY > MousePicker.TOP_BAR_HEIGHT || rightClickY < MousePicker.BOTTOM_BAR_HEIGHT) {
+        if (rightClickY > MousePicker.TOP_BAR_HEIGHT || rightClickY < MousePicker.BOTTOM_BAR_HEIGHT ) {
             return false;
         }
 
@@ -129,7 +129,7 @@ public class Inventory {
             }
         }
 
-        if (x < 0 || y < 0 || x > numberOfRows || y > numberOfColumns) {
+        if (x < 0 || y < 0 || x > numberOfColumns || y > numberOfRows) {
             return false;
         }
 

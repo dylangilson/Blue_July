@@ -61,10 +61,12 @@ public class Player extends AnimatedEntity {
                 NUMBER_OF_PIXELS_BETWEEN_INVENTORY_SLOT_X, INITIAL_Y_POSITION_INVENTORY, NUMBER_OF_PIXELS_BETWEEN_INVENTORY_SLOT_Y);
         this.equipment = new Equipment(this);
         this.stats = new Stats(true);
+        this.target = null;
+
+        // TODO remove this as its just for test
         this.stats.getStrength().updateTemporaryLevel(2, false);
         this.stats.getHitpoints().addXP(10000);
         this.stats.getHitpoints().updateTemporaryLevel(-5, false);
-        this.target = null;
     }
 
     // this method gets called every frame

@@ -25,7 +25,7 @@ public class Friends {
 
     public void loadText(Vector2f position) {
         this.text = new GUIText("Friends list will be available with the addition of Multiplayer!", 1.75f, TextMaster.MALGUN_GOTHIC,
-                GlobalConstants.SKY_BLUE, TextMaster.NORMAL_TEXT_COLOUR, new Vector2f(TextMaster.BORDERWIDTH_NO_EFFECT, TextMaster.BORDEREDGE_NO_EFFECT),
+                GlobalConstants.SKY_BLUE, TextMaster.NORMAL_TEXT_COLOUR, new Vector2f(TextMaster.BORDERWIDTH_NORMAL_EFFECT, TextMaster.BORDEREDGE_NORMAL_EFFECT),
                 position, TextMaster.MAX_LINE_LENGTH / 5, true);
 
         TextMaster.loadText(this.text);

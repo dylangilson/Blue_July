@@ -99,7 +99,7 @@ public class Main {
     public static final List<FriendlyNPC> FRIENDLY_NPCS = new ArrayList<FriendlyNPC>();
     public static final List<AggressiveNPC> ENEMIES = new ArrayList<AggressiveNPC>();
     public static final List<Item> ITEMS_ON_GROUND = new ArrayList<Item>();
-    public static MousePicker.HUDPanel INVENTORY_PANEL = MousePicker.HUDPanel.INVENTORY;
+    public static MousePicker.HUDPanel HUD_PANEL = MousePicker.HUDPanel.INVENTORY;
 
     public static void main(String[] args) {
         DisableIllegalAccessWarning.disableAccessWarnings();
@@ -321,10 +321,10 @@ public class Main {
                     player.faceTarget(gameViewMouseRay); // handle character rotation
                 } else if (mouse.elementHoveredOver == MousePicker.GameElement.INVENTORY) {
                     HUDMouseRay = mouse.getMouseScreenPoint();
-                    MousePicker.HUDPanel currentPanel = INVENTORY_PANEL;
+                    MousePicker.HUDPanel currentPanel = HUD_PANEL;
                     mouse.selectHUDPanel(HUDMouseRay);
 
-                    if (INVENTORY_PANEL != currentPanel) {
+                    if (HUD_PANEL != currentPanel) {
                         HUDPanelSystem.displayPanel(player);
                         rightClickX = 0;
                         rightClickY = 0;

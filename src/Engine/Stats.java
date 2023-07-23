@@ -123,7 +123,7 @@ public class Stats {
         this.smithing.updateTemporaryLevel(this.smithing.getLevel(), false);
         this.fishing.updateTemporaryLevel(this.fishing.getLevel(), false);
         this.cooking.updateTemporaryLevel(this.cooking.getLevel(), false);
-        this.woodcutting.updateTemporaryLevel(this.woodcutting.getTemporaryLevel(), false);
+        this.woodcutting.updateTemporaryLevel(this.woodcutting.getLevel(), false);
         this.firemaking.updateTemporaryLevel(this.firemaking.getLevel(), false);
     }
 

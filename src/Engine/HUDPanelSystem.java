@@ -15,7 +15,7 @@ import org.lwjgl.util.vector.Vector2f;
 public class HUDPanelSystem {
 
     public void displayPanel(Player player) {
-        MousePicker.HUDPanel panel = Main.INVENTORY_PANEL;
+        MousePicker.HUDPanel panel = Main.HUD_PANEL;
 
         // TODO implement this
         if (panel == HUDPanel.INVENTORY) {
@@ -54,7 +54,7 @@ public class HUDPanelSystem {
         clearPanel(player, panel);
     }
 
-    private void clearPanel(Player player, HUDPanel panel) {
+    public void clearPanel(Player player, HUDPanel panel) {
         if (panel != HUDPanel.INVENTORY) {
             player.getInventory().clearPanel();
         }

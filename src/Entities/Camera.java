@@ -120,8 +120,9 @@ public class Camera {
     }
 
     private void calculatePitch() {
+        float pitchChange = 0.5f;
+
         if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-            float pitchChange = 0.5f;
             pitch += pitchChange;
 
             if (pitch > 60) {
@@ -130,24 +131,43 @@ public class Camera {
         }
 
         if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-            float pitchChange = 0.5f;
             pitch -= pitchChange;
 
             if (pitch < 5) {
                 pitch = 5;
             }
         }
+
+        // Mouse scroll wheel clicked
+        if (Mouse.isButtonDown(2)) {
+            int sign = Integer.signum(Mouse.getDY());
+            pitch += pitchChange * -sign * 3;
+
+            if (pitch < 5) {
+                pitch = 5;
+            }
+
+            if (pitch > 60) {
+                pitch = 60;
+            }
+        }
     }
 
     private void calculateAngleAroundPlayer() {
+        float angleChange = 1f;
+
         if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-            float angleChange = 1f;
             angleAroundPlayer -= angleChange;
         }
 
         if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-            float angleChange = 1f;
             angleAroundPlayer += angleChange;
+        }
+
+        // Mouse scroll wheel clicked
+        if (Mouse.isButtonDown(2)) {
+            int sign = Integer.signum(Mouse.getDX());
+            angleAroundPlayer += angleChange * -sign * 3;
         }
     }
 

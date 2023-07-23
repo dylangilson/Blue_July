@@ -144,7 +144,7 @@ public class Inventory {
         }
 
         items[firstFreeSlot] = item;
-        if (Main.INVENTORY_PANEL == MousePicker.HUDPanel.INVENTORY) {
+        if (Main.HUD_PANEL == MousePicker.HUDPanel.INVENTORY) {
             item.loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(firstFreeSlot),
                     player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(firstFreeSlot)));
         }
@@ -163,7 +163,7 @@ public class Inventory {
 
     public boolean addItemAtIndex(Item item, int index) {
         items[index] = item;
-        if (Main.INVENTORY_PANEL == MousePicker.HUDPanel.INVENTORY) {
+        if (Main.HUD_PANEL == MousePicker.HUDPanel.INVENTORY) {
             item.loadTexture(new Vector2f(player.getInventory().INITIAL_X_OFFSET + player.getInventory().getOffsetX(index),
                     player.getInventory().INITIAL_Y_OFFSET - player.getInventory().getOffsetY(index)));
         }

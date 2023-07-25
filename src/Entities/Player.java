@@ -39,7 +39,7 @@ public class Player extends AnimatedEntity {
     public static final int INITIAL_Y_POSITION_INVENTORY = 370;
     public static final int NUMBER_OF_PIXELS_BETWEEN_INVENTORY_SLOT_Y = 45;
 
-    public String username; // change and move to appropriate account file
+    public String username; // TODO change and move to appropriate account file
     private float attackRange;
     private Delay attackDelay;
     private Inventory inventory;
@@ -68,11 +68,6 @@ public class Player extends AnimatedEntity {
         this.friends = new Friends();
         this.ignore = new Ignore();
         this.target = null;
-
-        // TODO remove this as its just for test
-        this.stats.getStrength().updateTemporaryLevel(2, false);
-        this.stats.getHitpoints().addXP(10000);
-        this.stats.getHitpoints().updateTemporaryLevel(-5, false);
     }
 
     // this method gets called every frame
@@ -100,7 +95,7 @@ public class Player extends AnimatedEntity {
             return;
         }
 
-        target.getStats().getHitpoints().updateTemporaryLevel(-calculateAttackDamage(), false);
+        target.getStats().getHitpoints().updateTemporaryLevel(stats, -calculateAttackDamage(), false);
         restartAttackDelay();
     }
 
@@ -110,7 +105,7 @@ public class Player extends AnimatedEntity {
 
     // TODO add a more random and intelligent damage calculation
     public int calculateAttackDamage() {
-        return this.stats.getStrength().getTemporaryLevel();
+        return this.stats.getStrength().getTemporaryLevel() * 3;
     }
 
     // this method uses the keyboard as input
@@ -174,7 +169,7 @@ public class Player extends AnimatedEntity {
 
     // TODO implement death mechanic
     public void death() {
-         this.getStats().reset();
+         this.getStats().reset(stats);
     }
 
     public Inventory getInventory() {

@@ -112,7 +112,7 @@ public abstract class AggressiveNPC extends NPC {
             return;
         }
 
-        target.getStats().getHitpoints().updateTemporaryLevel(-calculateAttackDamage(), false);
+        target.getStats().getHitpoints().updateTemporaryLevel(null, -calculateAttackDamage(), false);
         restartAttackDelay();
     }
 
@@ -143,7 +143,7 @@ public abstract class AggressiveNPC extends NPC {
     }
 
     public void respawn() {
-        this.getStats().reset();
+        this.getStats().reset(null);
         // TODO change position to random position somewhere in the bounding volume of given NPC
         this.setPosition(new Vector3f(50, getPosition().y, -50));
         this.target = null;

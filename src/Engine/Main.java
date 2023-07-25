@@ -360,7 +360,7 @@ public class Main {
             rightClickHeld = Mouse.isButtonDown(1);
             lastRightClickX = rightClickX;
             lastRightClickY = rightClickY;
-
+            
             updateGameObjects(player, terrain);
 
             source.setPosition(player.getPosition());

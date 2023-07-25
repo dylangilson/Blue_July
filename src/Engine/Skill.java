@@ -9,8 +9,9 @@ package Engine;
 import Font.GUIText;
 import Font.TextMaster;
 import GUIs.GUITexture;
-
 import Utilities.GlobalConstants;
+
+import Utilities.MousePicker;
 import org.lwjgl.util.vector.Vector2f;
 
 public class Skill {
@@ -25,7 +26,7 @@ public class Skill {
     private GUITexture texture;
     private GUIText text;
 
-    public Skill(String name, long xp, Vector2f texturePosition, boolean isLevelable) {
+    public Skill(String name, long xp, boolean isLevelable) {
         this.name = name;
         this.xp = xp;
         calculateLevel();
@@ -49,7 +50,7 @@ public class Skill {
     // input may be positive or negative
     // positive -> increase temporary level (e.g. eating food or drinking potion)
     // negative -> decrease temporary level (e.g. taking damage)
-    public void updateTemporaryLevel(int value, boolean isOverLevelable) {
+    public void updateTemporaryLevel(Stats stats, int value, boolean isOverLevelable) {
         this.temporaryLevel += value;
 
         if (this.temporaryLevel < 0) {
@@ -61,6 +62,28 @@ public class Skill {
             if (this.temporaryLevel > 99) {
                 this.temporaryLevel = 99;
             }
+        }
+
+        if (stats == null) {
+            return;
+        }
+
+        if (Main.HUD_PANEL == MousePicker.HUDPanel.LEVELS) {
+            stats.clearLevels();
+            stats.renderLevels();
+        }
+    }
+
+    public void resetTemporaryLevel(Stats stats) {
+        this.temporaryLevel = level;
+
+        if (stats == null) {
+            return;
+        }
+
+        if (Main.HUD_PANEL == MousePicker.HUDPanel.LEVELS) {
+            stats.clearLevels();
+            stats.renderLevels();
         }
     }
 

@@ -36,24 +36,24 @@ public class Stats {
     private Skill woodcutting;
 
     public Stats(boolean isLevelable) {
-        attack = new Skill("Attack", 1, new Vector2f(0f, 0f), isLevelable);
-        strength = new Skill("Strength", 1, new Vector2f(0f, 0f), isLevelable);
-        defence = new Skill("Defence", 1, new Vector2f(0f, 0f), isLevelable);
-        ranged = new Skill("Ranged", 1, new Vector2f(0f, 0f), isLevelable);
-        prayer = new Skill("Prayer", 1, new Vector2f(0f, 0f), isLevelable);
-        magic = new Skill("Magic", 1, new Vector2f(0f, 0f), isLevelable);
-        hitpoints = new Skill("Hitpoints", 1000, new Vector2f(0f, 0f), isLevelable);
-        herblore = new Skill("Herblore", 1, new Vector2f(0f, 0f), isLevelable);
-        crafting = new Skill("Crafting", 1, new Vector2f(0f, 0f), isLevelable);
-        fletching = new Skill("Fletching", 1, new Vector2f(0f, 0f), isLevelable);
-        slayer = new Skill("Slayer", 1, new Vector2f(0f, 0f), isLevelable);
-        runecrafting = new Skill("Runecrafting", 1, new Vector2f(0f, 0f), isLevelable);
-        mining = new Skill("Mining", 1, new Vector2f(0f, 0f), isLevelable);
-        smithing = new Skill("Smithing", 1, new Vector2f(0f, 0f), isLevelable);
-        fishing = new Skill("Fishing", 1, new Vector2f(0f, 0f), isLevelable);
-        cooking = new Skill("Cooking", 1, new Vector2f(0f, 0f), isLevelable);
-        woodcutting = new Skill("Woodcutting", 1, new Vector2f(0f, 0f), isLevelable);
-        firemaking = new Skill("Firemaking", 1, new Vector2f(0f, 0f), isLevelable);
+        attack = new Skill("Attack", 1, isLevelable);
+        strength = new Skill("Strength", 1, isLevelable);
+        defence = new Skill("Defence", 1, isLevelable);
+        ranged = new Skill("Ranged", 1, isLevelable);
+        prayer = new Skill("Prayer", 1, isLevelable);
+        magic = new Skill("Magic", 1, isLevelable);
+        hitpoints = new Skill("Hitpoints", 1000, isLevelable);
+        herblore = new Skill("Herblore", 1, isLevelable);
+        crafting = new Skill("Crafting", 1, isLevelable);
+        fletching = new Skill("Fletching", 1, isLevelable);
+        slayer = new Skill("Slayer", 1, isLevelable);
+        runecrafting = new Skill("Runecrafting", 1, isLevelable);
+        mining = new Skill("Mining", 1, isLevelable);
+        smithing = new Skill("Smithing", 1, isLevelable);
+        fishing = new Skill("Fishing", 1, isLevelable);
+        cooking = new Skill("Cooking", 1, isLevelable);
+        woodcutting = new Skill("Woodcutting", 1, isLevelable);
+        firemaking = new Skill("Firemaking", 1, isLevelable);
 
         calculateTotalXP();
         calculateTotalLevel();
@@ -106,25 +106,25 @@ public class Stats {
     }
 
     // reset all temporary levels back to actual level
-    public void reset() {
-        this.attack.updateTemporaryLevel(this.attack.getLevel(), false);
-        this.strength.updateTemporaryLevel(this.strength.getLevel(), false);
-        this.defence.updateTemporaryLevel(this.defence.getLevel(), false);
-        this.ranged.updateTemporaryLevel(this.ranged.getLevel(), false);
-        this.prayer.updateTemporaryLevel(this.prayer.getLevel(), false);
-        this.magic.updateTemporaryLevel(this.magic.getLevel(), false);
-        this.hitpoints.updateTemporaryLevel(this.hitpoints.getLevel(), false);
-        this.herblore.updateTemporaryLevel(this.herblore.getLevel(), false);
-        this.crafting.updateTemporaryLevel(this.crafting.getLevel(), false);
-        this.fletching.updateTemporaryLevel(this.fletching.getLevel(), false);
-        this.slayer.updateTemporaryLevel(this.slayer.getLevel(), false);
-        this.runecrafting.updateTemporaryLevel(this.runecrafting.getLevel(), false);
-        this.mining.updateTemporaryLevel(this.mining.getLevel(), false);
-        this.smithing.updateTemporaryLevel(this.smithing.getLevel(), false);
-        this.fishing.updateTemporaryLevel(this.fishing.getLevel(), false);
-        this.cooking.updateTemporaryLevel(this.cooking.getLevel(), false);
-        this.woodcutting.updateTemporaryLevel(this.woodcutting.getLevel(), false);
-        this.firemaking.updateTemporaryLevel(this.firemaking.getLevel(), false);
+    public void reset(Stats stats) {
+        this.attack.resetTemporaryLevel(stats);
+        this.strength.resetTemporaryLevel(stats);
+        this.defence.resetTemporaryLevel(stats);
+        this.ranged.resetTemporaryLevel(stats);
+        this.prayer.resetTemporaryLevel(stats);
+        this.magic.resetTemporaryLevel(stats);
+        this.hitpoints.resetTemporaryLevel(stats);
+        this.herblore.resetTemporaryLevel(stats);
+        this.crafting.resetTemporaryLevel(stats);
+        this.fletching.resetTemporaryLevel(stats);
+        this.slayer.resetTemporaryLevel(stats);
+        this.runecrafting.resetTemporaryLevel(stats);
+        this.mining.resetTemporaryLevel(stats);
+        this.smithing.resetTemporaryLevel(stats);
+        this.fishing.resetTemporaryLevel(stats);
+        this.cooking.resetTemporaryLevel(stats);
+        this.woodcutting.resetTemporaryLevel(stats);
+        this.firemaking.resetTemporaryLevel(stats);
     }
 
     public void renderLevels() {
